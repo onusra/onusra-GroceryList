@@ -23,12 +23,15 @@ public class GroceryDAO {
      * You only need to change the sql String, the rest of the method is already complete.
      * @return a List of all the groceries contained within the database.
      */
+    public static void main(String[] args){
+
+    }
     public List<String> getAllGroceries(){
         Connection connection = ConnectionUtil.getConnection();
         List<String> groceries = new ArrayList<>();
         try {
             //Write SQL logic here
-            String sql = "change me";
+            String sql = "SELECT * FROM Grocery";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -56,15 +59,17 @@ public class GroceryDAO {
      *
      * @param groceryName the name of the grocery passed in from the GroceryService.
      */
+
     public void addGrocery(String groceryName){
         Connection connection = ConnectionUtil.getConnection();
         try {
             //Write SQL logic here
-            String sql = "change me";
+            String sql = "INSERT INTO Grocery(grocery_name) VALUES(?)";
+
             PreparedStatement ps = connection.prepareStatement(sql);
 
-            //add code that leverages ps.setString here
-
+            //add code that leverages setStringps. here
+            ps.setString(1,groceryName);
             ps.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
